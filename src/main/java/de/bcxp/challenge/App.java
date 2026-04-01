@@ -2,31 +2,15 @@ package de.bcxp.challenge;
 
 import java.util.List;
 
-/**
- * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
- * design. Read: create your own classes and packages as appropriate.
- */
 public final class App {
 
-    /**
-     * This is the main entry method of your program.
-     * @param args The CLI arguments passed
-     */
     public static void main(String... args) {
-        WeatherReader reader = new WeatherReader();
-        List<Weather> listOfWeather = reader.readDocument();
-        Weather minSpreadDay = listOfWeather.get(0);
+        Operator operator = new Operator();
 
-        for(Weather element : listOfWeather){
-            if (element.getTempSpread() < minSpreadDay.getTempSpread()){
-                minSpreadDay = element;
-            }
-        }
-
-        String dayWithSmallestTempSpread = Integer.toString(minSpreadDay.getDay());     // Your day analysis function call …
+        String dayWithSmallestTempSpread = operator.computeWeatherOperation();     // Your day analysis function call …
         System.out.printf("Day with smallest temperature spread: %s%n", dayWithSmallestTempSpread);
 
-        //String countryWithHighestPopulationDensity = "Some country"; // Your population density analysis function call …
-        //System.out.printf("Country with highest population density: %s%n", countryWithHighestPopulationDensity);
+        String countryWithHighestPopulationDensity = operator.computeCountryOperation(); // Your population density analysis function call …
+        System.out.printf("Country with highest population density: %s%n", countryWithHighestPopulationDensity);
     }
 }
